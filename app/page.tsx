@@ -4,13 +4,18 @@ import Link from "next/link";
 export default async function Home() {
   const snippets = await db.snippet.findMany();
 
-  const renderedSnippets = snippets.map((snippet) => {
+  interface Snippet {
+    id: string;
+    title: string;
+  }
+
+  const renderedSnippets = snippets.map((snippet: Snippet) => {
     return (
       <Link href={`snippets/${snippet.id}`} key={snippet.id} className="flex justify-between items-center p-2 border rounded">
         <div>{snippet.title}</div>
         <div>view</div>
       </Link>
-    )
+    );
   });
 
   return (
