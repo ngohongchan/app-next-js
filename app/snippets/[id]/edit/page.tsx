@@ -4,12 +4,12 @@ import SnippetEditForm from "@/components/snippet-edit-form";
 
 interface SnippetEditPageProps {
     params: {
-        id: string;
+        id: number;
     }
 }
 
 export default async function SnippetEditPage(props: SnippetEditPageProps) {
-    const id = parseInt(props.params.id);
+    const id = parseInt(props.params.id.toString());
     const snippet = await db.snippet.findFirst({
         where: {
             id
